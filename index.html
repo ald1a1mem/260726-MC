@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>260726 SBS 人氣歌謠 彝晛 & 俊抒 & 相沅 MC cut 合集</title>
+
+<link id="custom-favicon" rel="icon" type="image/x-icon" href="">
+
+<script>
+// =========================================================================
+// ✨【大平台設定區】以後換新影片，只需要修改這裡！ ✨
+// =========================================================================
+
+// 1. YouTube 影片 ID（網址 watch?v= 後面那一串英文數字）
+const videoId = "影片網址"; 
+
+// 2. 🐱 你的 GitHub 帳號名稱（User Name）
+const githubUsername = "ald1a1mem"; 
+
+// 3. 右側時間軸捷徑（顯示名稱、要跳轉的時間秒數）
+const timeLinks = [
+   { label: "介紹嘉賓", seconds: 59 },
+   { label: " 1 位候補", seconds: 83 },
+   { label: " 人氣舞台 TOP 3", seconds: 147 },
+   { label: " 採訪 - fromis_9", seconds: 226 },
+];
+
+// 4. 影片字幕設定（如不需滾動字幕，保持空陣列 [] 即可）
+const subtitles = [
+  { time: 1, text: "彝晛：7月最後一週的直播 SBS " },
+  { time: 4, text: "MC：人氣歌謠，大家好" },
+  { time: 7, text: "彝晛：KPOP 主題樂園人氣樂園的導覽員彝晛" },
+  { time: 9, text: "相沅、俊抒：今天的特別導覽員 ALPHA DRIVE ONE的相沅和俊抒" },
+  { time: 14, text: "彝晛：人氣樂園" },
+  { time: 15, endTime: 18,  text: "MC：正式開園，Music Start" },
+  { time: 22, endTime: 25, text: "彝晛：嗨起來，把氣氛拉到最高" },
+  { time: 28, text: "俊抒：感謝各位遊客" },
+  { time: 31, text: "彝晛：準備好出發了嗎" },
+  { time: 33, endTime: 35,  text: "相沅：喔耶" },
+  { time: 38,  text: "彝晛：我太高興了" },
+  { time: 40,  text: "俊抒：隊長，隊長請過來一下" },
+  { time: 42,  text: "相沅：喔喔，隊長" },
+  { time: 43,  text: "俊抒：隊長太高興了" },
+  { time: 45,  text: "俊抒：今天在我們的人氣樂園裡，可以盡情享受各種遊樂設施和活動喔" },
+  { time: 49,  text: "彝晛：首先在水上樂園區，1、2 頭髮" },
+  { time: 52,  text: "MC：不管是頭髮還是衣服濕了也沒關係" },
+  { time: 55,  endTime: 58,  text: "MC：連鞋子和襪子都可以一起濕透！" },
+  { time: 59,  text: "相沅：現在，用 Wet 把舞台徹底弄濕的 JYP 朴軫永" },
+  { time: 63,  text: "彝晛：K-pop Safari 的最高支配者 U-KNOW 允浩" },
+  { time: 66,  text: "俊抒、相沅：在夏日冒險區能欣賞到 fromis_9 與 RESCENE 的特別舞台" },
+  { time: 72,  text: "彝晛：在魔法城堡登場的夏季女王宣美" },
+  { time: 74,  endTime: 75, text: "相沅：20 人" },
+  { time: 76,  text: "相沅：由 20 人展現強大氣勢的 idntt 精彩舞台，大家千萬別錯過" },
+  { time: 80,  text: "彝晛：那麼，現在開始介紹人氣樂園最熱門的遊樂設施" },
+  { time: 83,  endTime: 86,text: "彝晛：請公開本週的 1 位候補" },
+  { time: 88,  endTime: 90,text: "彝晛：7月最後一週的 1 位候補" },
+  { time: 92,  endTime: 94,text: "彝晛：I.O.I Suddenly" },
+  { time: 100,  endTime: 101,text: "彝晛：aespa LEMONADE" },
+  { time: 107,  endTime: 109,text: "彝晛：RESCENE LOVE ATTACK" },
+  { time: 114,  endTime: 119,text: "彝晛：即時投票現在開始，本週誰會獲得1位呢" },
+  { time: 120,  text: "俊抒：人氣歌謠事前投票請透過下方顯示的手機 APP 進行投票，請大家多多參與" },
+  { time: 125,  text: "彝晛：那麼各位遊客，首先帶領大家前往新手區" },
+  { time: 129,  text: "相沅：有清涼刺激的水上滑道 AmbiO的 Blue Splash" },
+  { time: 132,  text: "俊抒：今天的活動 OURBIRTHDAY 的預出道生日派對" },
+  { time: 136,  text: "彝晛：表演即將開始，請盡快入場" },
+  { time: 139,  text: "彝晛：Hat:q 的感性舞台" },
+  { time: 140,  endTime: 143,text: "MC：Music Start" },
+  { time: 147,  endTime: 152, text: "相沅：公布本週最熱門的人氣舞台 TOP 3 排名" },
+  { time: 157,  endTime: 159, text: "俊抒：第 3 名 - AHOF RUN TO YOU" },
+  { time: 162,  endTime: 164, text: "相沅：第 2 名 - RESCENE 的 Pretty Girl" },
+  { time: 167,  text: "彝晛：第 1 名 - 然竣 的 Ice Cream" },
+  { time: 169,  endTime: 170,text: "MC：恭喜" },
+  { time: 172,  endTime: 175,text: "彝晛：今天的表演舞台也請大家多多投票" },
+  { time: 176,  text: "彝晛：工讀生們" },
+  { time: 177,  text: "俊抒、相沅：耶，隊長" },
+  { time: 178,  text: "彝晛：我們人氣樂園的導覽員在接待遊客時絕對不能忘記的是什麼？" },
+  { time: 181,  endTime: 182, text: "俊抒：好心情" },
+  { time: 183,  text: "相沅：甜美的笑容" },
+  { time: 184,  text: "彝晛：我們的打工生表現得太棒了，Music" },
+  { time: 186,  endTime: 187, text: "彝晛、俊抒：Start" },
+  { time: 208,  text: "彝晛：那麼，帶著甜美的笑容和好心情，來看看下一個舞台吧" },
+  { time: 212,  text: "俊抒：新穎的 DAILY:DIRECTION 與 idntt" },
+  { time: 215,  text: "相沅：還有心跳加速的 Vayonn MUAH 舞台" },
+  { time: 219,  endTime: 221, text: "MC：Music Start" },
+  { time: 226,  text: "相沅：各位遊客，玩得太開心是不是又熱又累了呢" },
+  { time: 229,  text: "彝晛：對，很熱" },
+  { time: 230,  text: "俊抒：那這個時候，我們去小吃店補充一下維生素再走吧" },
+  { time: 235,  text: "相沅、俊抒：人氣樂園顏值擔當的導覽員 fromis_9 登場" },
+  { time: 239,  text: "MC：歡迎你們" },
+  { time: 240,  text: "河英：2、3" },
+  { time: 241,  text: "大家好，我們是 fromis_9" },
+  { time: 245,  text: "俊抒：各位 fromis_9 大家好" },
+  { time: 247,  text: "俊抒：又熱又累的時候，吃什麼點心最好呢" },
+  { time: 250,  text: "彩煐：話說回來，夏天雖然玩得很開心，但在炎熱的天氣裡一定要照顧好健康" },
+  { time: 257,  text: "彩煐：我推薦的維生素就是 Vitamin Me" },
+  { time: 261,  endTime: 263,text: "Me" },
+  { time: 263,  text: "娜炅：需要活力的時候，就用 Vitamin Me 來清爽地補充能量吧" },
+  { time: 268,  text: "彝晛：那麼，這裡有沒有誰覺得自己就是 Vitamin Me 的人呢" },
+  { time: 272,  text: "池原、知憲：是我" },
+  { time: 273,  text: "彝晛：請先示範" },
+  { time: 275,  endTime: 278, text: "池原：我來示範給你們看，高劑量維生素發射" },
+  { time: 281,  endTime: 283, text: "彝晛：Vitamin Me 發射" },
+  { time: 286,  text: "彝晛：換下一位工讀生發射維生素" },
+  { time: 288,  text: "俊抒：我們的相沅 Vitamin Me" },
+  { time: 290,  text: "彝晛：發射\n彩煐：Vitamin Me" },
+  { time: 292,  endTime: 295,text: "再做一次\n池原：感動" },
+  { time: 299,  text: "彩煐：我想知道會發射出什麼維生素呢" },
+  { time: 301,  text: "俊抒：Vitamin Me\n1、2、3" },
+  { time: 303,  endTime: 304, text: "池原：開始" },
+  { time: 306,  text: "相沅：唉呦喂呀" },
+  { time: 307,  text: "俊抒：不能只有我們展示給大家看吧\n相沅：沒錯" },
+  { time: 310,  text: "俊抒：我們的隊長\n相沅：隊長" },
+  { time: 311,  text: "俊抒：隊長也來發射清爽的維生素" },
+  { time: 312,  text: "已經很清爽，很可愛了" },
+  { time: 318,  text: "娜炅：像兔子一樣" },
+  { time: 320,  text: "很可愛" },
+  { time: 322,  text: "相沅：那麼大家一起變身成行走的 Vitamin Me" },
+  { time: 325,  text: "相沅：Music" },
+  { time: 326,  endTime: 327,text: "相沅、俊抒：Start" },
+  { time: 340,  endTime: 345,text: "彩煐：做得很好，很可愛" },
+  { time: 346,  text: "彩煐：謝謝你們\n池原：真的非常謝謝你們" },
+  { time: 349,  text: "彝晛：能量\n俊抒：真的太清爽了" },
+  { time: 350,  text: "彝晛：謝謝你們" },
+  { time: 351,  text: "彝晛：能量已經充滿，那麼河英，接下來要去哪裡呢" },
+  { time: 355,  text: "河英：有像雲霄飛車那樣刺激表演的兩個團隊 LUN8 與 8TURN" },
+  { time: 361,  endTime: 367, text: "俊抒：還有今天舞台上即將公開的本週ending妖精，究竟本週的主角會是誰呢，請大家敬請期待" },
+];
+
+// =========================================================================
+</script>
+
+<style>
+/* 🎨 全域基礎樣式（深色背景） */
+body { 
+  background: #111; 
+  color: white; 
+  text-align: center; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+  margin: 0; 
+  overflow-x: hidden; 
+}
+
+/* 🌟 主題顏色設定（亮藍色風格） */
+:root { 
+  --main-color: #5698c3; 
+}
+
+/* 🔝 標題與字幕控制區 */
+#title { 
+  font-size: 28px; 
+  margin: 20px auto 15px auto; 
+  font-weight: bold; 
+  line-height: 1.5; 
+  max-width: 95%; 
+}
+
+#subtitle-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* 🎬 核心外層大框框：寬度限制為影片寬度，使其完美居中 */
+#main-layout {
+  position: relative;
+  max-width: 640px; 
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#video-wrapper { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%; 
+}
+
+/* 🎥 影片容器 */
+#video-container { 
+  position: relative; 
+  width: 100%; 
+  aspect-ratio: 16 / 9; 
+  background: black; 
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+#player, #player iframe { 
+  width: 100%; 
+  height: 100%; 
+  display: block; 
+}
+
+/* 💬 浮動字幕樣式 */
+#subtitle { 
+  position: absolute; 
+  bottom: 12%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 24px; 
+  color: white; 
+  background: rgba(0,0,0,0.65); 
+  padding: 8px 20px; 
+  border-radius: 8px; 
+  white-space: pre-line; 
+  max-width: 70%; 
+  width: fit-content; 
+  pointer-events: none; 
+  z-index: 10; 
+  line-height: 1.4; 
+  display: none;
+  transition: font-size 0.2s ease;
+}
+
+/* 🎯 底部控制列（影片下方只留下全螢幕按鈕） */
+#bottom-block { 
+  width: 100%; 
+  margin-top: 20px; 
+  margin-bottom: 35px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+/* 按鈕通用樣式 */
+.btn {
+  background: var(--main-color); 
+  color: white; 
+  border: none; 
+  padding: 8px 22px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: bold; 
+  transition: 0.3s; 
+  font-size: 15px;
+}
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+/* 主按鈕（全螢幕）加寬加厚 */
+#fullscreenBtn { 
+  padding: 10px 35px;
+  font-size: 16px;
+}
+
+/* 🚪 進入全螢幕後在畫面右下方顯示的「退出全螢幕」按鈕（主色調） */
+#exitFullscreenBtn {
+  display: none; 
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20; 
+  background: var(--main-color); 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+#exitFullscreenBtn:hover {
+  filter: brightness(1.1);
+}
+/* 當偵測到全螢幕狀態時，自動強制顯示該按鈕 */
+#video-container:fullscreen #exitFullscreenBtn,
+#video-container:-webkit-full-screen #exitFullscreenBtn {
+  display: block !important;
+}
+
+/* 📜 右側獨立時間軸選單 */
+#timeline-sidebar {
+  position: absolute;
+  left: 680px;      
+  top: 0;
+  width: 280px;
+  height: 360px;    
+  background: #222;
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto; 
+  text-align: left;
+}
+
+/* 側欄標題區 */
+#sidebar-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--main-color); 
+  margin-bottom: 5px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 8px;
+}
+
+#timeline-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 📜 美化側欄滾動條 */
+#timeline-sidebar::-webkit-scrollbar { width: 6px; }
+#timeline-sidebar::-webkit-scrollbar-track { background: #222; }
+#timeline-sidebar::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+#timeline-sidebar::-webkit-scrollbar-thumb:hover { background: var(--main-color); }
+
+/* 📱 RWD 行動裝置自動適應 */
+@media (max-width: 1024px) {
+  #main-layout { max-width: min(95vw, 640px); }
+  #timeline-sidebar {
+    position: static; 
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="title">260726 SBS 人氣歌謠 彝晛 & 俊抒 & 相沅 MC cut 合集</div>
+
+<div id="subtitle-controls">
+  <button class="btn" onclick="adjustSubtitle(4)">放大</button>
+  <button class="btn" onclick="adjustSubtitle(-4)">縮小</button>
+  <button class="btn" onclick="resetSubtitle()">復原</button>
+</div>
+
+<div id="main-layout">
+  
+  <div id="video-wrapper">
+    <div id="video-container">
+      <div id="player"></div>
+      <div id="subtitle"></div>
+      <button id="exitFullscreenBtn" class="btn" onclick="exitFullScreen()">退出全螢幕</button>
+    </div>
+    
+    <div id="bottom-block">
+      <button id="fullscreenBtn" class="btn" onclick="enterFullScreen()">全螢幕</button>
+    </div>
+  </div>
+
+  <div id="timeline-sidebar">
+    <div id="sidebar-title">時間軸目錄</div>
+    <div id="timeline-controls"></div>
+  </div>
+
+</div>
+
+<script>
+let player = null;
+const defaultFontSize = 24; 
+let currentFontSize = defaultFontSize;
+
+// 載入 YouTube API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    height: "360",
+    width: "640",
+    videoId: videoId,
+    playerVars: { 'autoplay': 0, 'controls': 1, 'rel': 0, 'modestbranding': 1, 'origin': window.location.origin,
+      'fs': 0  },
+    events: { 'onReady': onPlayerReady }
+  });
+}
+
+function onPlayerReady(event) { 
+  initTimelineButtons();
+  initGithubFavicon(); // 啟動 GitHub 瀏覽器圖示動態綁定
+  resetSubtitle();
+  setInterval(videoLoop, 200); 
+}
+
+function videoLoop() {
+  if(!player || typeof player.getCurrentTime !== 'function') return;
+  const currentTime = player.getCurrentTime();
+  updateSubtitle(currentTime);
+}
+
+// 🌐 核心功能：動態綁定 GitHub 頭像至 Favicon
+function initGithubFavicon() {
+  if (!githubUsername || githubUsername === "填入你的GitHub帳號") return;
+  
+  // 使用 GitHub 官方提供的公開快捷頭像連結
+  const githubAvatarUrl = `https://github.com/${githubUsername}.png`;
+  
+  // 將頭像網址塞入 Favicon 標籤中
+  document.getElementById("custom-favicon").href = githubAvatarUrl;
+}
+
+// 更新字幕
+function updateSubtitle(t){
+  if (!subtitles || subtitles.length === 0) return;
+  let text = "";
+  for(let i = subtitles.length - 1; i >= 0; i--){
+    const sub = subtitles[i];
+    if(t >= sub.time){
+      if(sub.endTime && t >= sub.endTime) { text = ""; } 
+      else { text = sub.text; }
+      break; 
+    }
+  }
+  const subEl = document.getElementById("subtitle");
+  if(text === "") { subEl.style.display = "none"; } 
+  else { subEl.style.display = "block"; subEl.innerText = text; }
+}
+
+// 點擊跳轉時間
+function jumpToTime(seconds) {
+  if (player && typeof player.seekTo === 'function') {
+    player.seekTo(seconds, true);
+    if (player.getPlayerState() !== 1) player.playVideo();
+  }
+}
+
+// 生成右側時間軸按鈕
+function initTimelineButtons() {
+  const container = document.getElementById("timeline-controls");
+  if (!container || !timeLinks || timeLinks.length === 0) return;
+  container.innerHTML = "";
+  timeLinks.forEach(link => {
+    const btn = document.createElement("button");
+    btn.innerText = link.label;
+    btn.style.cssText = "background: #333; color: white; border: 1px solid #444; padding: 12px 15px; border-radius: 6px; cursor: pointer; transition: 0.3s; font-weight: bold; font-size: 14px; width: 100%; text-align: left;";
+    btn.onmouseover = () => { btn.style.background = "var(--main-color)"; btn.style.borderColor = "var(--main-color)"; };
+    btn.onmouseout = () => { btn.style.background = "#333"; btn.style.borderColor = "#444"; };
+    btn.onclick = () => jumpToTime(link.seconds);
+    container.appendChild(btn);
+  });
+}
+
+// 字幕放大縮小功能
+function adjustSubtitle(value) {
+  const subEl = document.getElementById("subtitle");
+  currentFontSize += value;
+  if (currentFontSize < 12) currentFontSize = 12; 
+  if (currentFontSize > 60) currentFontSize = 60; 
+  subEl.style.fontSize = currentFontSize + "px";
+}
+
+// 字幕復原功能
+function resetSubtitle() {
+  const subEl = document.getElementById("subtitle");
+  currentFontSize = defaultFontSize;
+  subEl.style.fontSize = currentFontSize + "px";
+}
+
+// 進入全螢幕
+function enterFullScreen() {
+  const elem = document.getElementById("video-container");
+  let req = elem.requestFullscreen || elem.webkitRequestFullscreen;
+  if (req) req.call(elem);
+}
+
+// 離開全螢幕
+function exitFullScreen() {
+  let exit = document.exitFullscreen || document.webkitExitFullscreen;
+  if (exit) exit.call(document);
+}
+</script>
+</body>
+</html>
