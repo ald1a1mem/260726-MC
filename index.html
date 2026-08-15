@@ -502,17 +502,16 @@ function onYouTubeIframeAPIReady() {
       'fs': 0 
     },
     events: { 
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange // 👈 補上這一行
+      'onReady': onPlayerReady 
     }
   });
 }
-
 function onPlayerReady(event) { 
   initTimelineButtons();
-  initGithubFavicon(); // 啟動 GitHub 瀏覽器圖示動態綁定
+  initGithubFavicon(); 
   resetSubtitle();
-  setInterval(videoLoop, 200); 
+  // 💡 建議：調整為 40ms，字幕偵測更順暢
+  setInterval(videoLoop, 40); 
 }
 
 function videoLoop() {
@@ -524,11 +523,11 @@ function videoLoop() {
 function initGithubFavicon() {
   if (!githubUsername || githubUsername === "填入你的GitHub帳號") return;
   
-  // 使用 GitHub 官方提供的公開快捷頭像連結
   const githubAvatarUrl = `https://github.com/${githubUsername}.png`;
-  
-  // 將頭像網址塞入 Favicon 標籤中
-  document.getElementById("custom-favicon").href = githubAvatarUrl;
+  const faviconEl = document.getElementById("custom-favicon");
+  if (faviconEl) {
+    faviconEl.href = githubAvatarUrl;
+  }
 }
 
 // 更新字幕
