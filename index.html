@@ -493,9 +493,18 @@ function onYouTubeIframeAPIReady() {
     height: "360",
     width: "640",
     videoId: videoId,
-    playerVars: { 'autoplay': 0, 'controls': 1, 'rel': 0, 'modestbranding': 1, 'origin': window.location.origin,
-      'fs': 0  },
-    events: { 'onReady': onPlayerReady }
+    playerVars: { 
+      'autoplay': 0, 
+      'controls': 1, 
+      'rel': 0, 
+      'modestbranding': 1, 
+      'origin': window.location.origin,
+      'fs': 0 
+    },
+    events: { 
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange // 👈 補上這一行
+    }
   });
 }
 
@@ -507,7 +516,19 @@ function onPlayerReady(event) {
 }
 
 function videoLoop() {
-  if(!player || typeof player.getCurrentTime !== 'function') return;
+  if (!player || typeof player.getCurrentTime !== 'function') return;
+
+  // 💡 判斷是否正在播放廣告（isVideoLoadedLikeAd 是 YouTube 內建隱藏屬性）
+  const isAd = player.getVideoData && player.getVideoData().isAd;
+  const subEl = document.getElementById("subtitle");
+
+  // 如果正在播廣告，直接把字幕藏起來，不更新字幕
+  if (isAd) {
+    if (subEl) subEl.style.display = "none";
+    return;
+  }
+
+  // 沒播廣告時，才正常抓取時間並更新字幕
   const currentTime = player.getCurrentTime();
   updateSubtitle(currentTime);
 }
